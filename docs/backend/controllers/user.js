@@ -16,7 +16,7 @@ exports.signup = (req, res, next) => {
     });
     user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-        .catch(error => res.status(400).json({ message: "L'adresse mail renseignée est déjà utilisée." }));
+        .catch(() => res.status(400).json({ message: "L'adresse mail renseignée est déjà utilisée." }));
     })
     .catch(error => res.status(500).json({ error }));
   } 
