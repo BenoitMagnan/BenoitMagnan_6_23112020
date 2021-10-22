@@ -13,7 +13,7 @@ Une fois le projet installé, cloner ce repository en dehors du dossier Web-Deve
 
 ```git clone https://github.com/Perceaurore/BenoitMagnan_6_23112020.git```
 
-Faites ensuite un ```npm i``` pour installer les packages nécessaires à l'utilisation du backend.
+Faites ensuite un ```npm i``` et ```npm i nodemon``` pour installer les packages nécessaires à l'utilisation du backend.
 
 Il faudra également créer dans le dossier backend un dossier nommé : ```images```. Celui-ci contiendra toutes les images que vous utiliserez à la création d'une sauce.
 
@@ -25,3 +25,7 @@ Il faut donc créer un fichier .env à la racine du dossier backend et renseigne
 J'utilise une base de donnée gratuite sur mongoDB. Vous pouvez en créer une rapidement en suivant ce cours :
 
 https://openclassrooms.com/fr/courses/6390246-passez-au-full-stack-avec-node-js-express-et-mongodb/6466348-configurez-votre-base-de-donnees
+
+Une fois l'installation terminée, il faut lancer deux terminaux :
+- depuis le dossier ```backend``` et lancer la commande ```nodemon server```
+- depuis le dossier ```Web-Developer-P6``` (qui contient le frontend) et lancer la commande ```npm start``` 
