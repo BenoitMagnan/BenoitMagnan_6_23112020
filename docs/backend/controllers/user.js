@@ -5,6 +5,9 @@ require('dotenv').config();
 const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
+  const passwordValidator = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    
+  if (passwordValidator.test(req.body.password)){
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
     const user = new User({
@@ -13,9 +16,13 @@ exports.signup = (req, res, next) => {
     });
     user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ message: "L'adresse mail renseignée est déjà utilisée." }));
     })
     .catch(error => res.status(500).json({ error }));
+  } 
+  else {
+    res.status(400).json({message: "Le mot de passe doit faire une taille de 8 caractères et doit obligatoirement contenir : 1 majuscule + 1 minuscule + 1 chiffre + 1 symbole"});
+  }  
 };
 
 exports.login = (req, res, next) => {

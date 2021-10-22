@@ -1,6 +1,21 @@
 const ModelsSauce = require('../models/ModelsSauce');
 const fs = require('fs');
 
+
+exports.getSauce = (req, res, next) => {
+    ModelsSauce.find()
+    .then(sauces => res.status(200).json(sauces))
+    .catch(error => res.status(400).json({error}));  
+    console.log('Sauce récupérée'); 
+};
+
+exports.getSauceById = (req, res, next) => {
+    ModelsSauce.findOne({_id: req.params.id})
+    .then(sauces => res.status(200).json(sauces))
+    .catch(error => res.status(400).json({error}));  
+    console.log('Sauce particulière récupérée'); 
+};
+
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -42,20 +57,6 @@ exports.deleteSauce = (req, res, next) => {
         });
     })
     .catch(error => res.status(500).json({error}));
-};
-
-exports.getSauce = (req, res, next) => {
-    ModelsSauce.find()
-    .then(sauces => res.status(200).json(sauces))
-    .catch(error => res.status(400).json({error}));  
-    console.log('Sauce récupérée'); 
-};
-
-exports.getSauceById = (req, res, next) => {
-    ModelsSauce.findOne({_id: req.params.id})
-    .then(sauces => res.status(200).json(sauces))
-    .catch(error => res.status(400).json({error}));  
-    console.log('Sauce particulière récupérée'); 
 };
 
 exports.likeSauce = (req, res, next) => {
